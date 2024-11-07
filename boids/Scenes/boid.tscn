@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://drnwqr0oouxak"]
+
+[ext_resource type="Texture2D" uid="uid://bvaxv4vohnq48" path="res://Sprites/canard.png" id="1_l26je"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahir5"]
+atlas = ExtResource("1_l26je")
+region = Rect2(8800, 1600, 800, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlj8a"]
+atlas = ExtResource("1_l26je")
+region = Rect2(8800, 0, 800, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rysgy"]
+atlas = ExtResource("1_l26je")
+region = Rect2(8800, 800, 800, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vifbj"]
+atlas = ExtResource("1_l26je")
+region = Rect2(8800, 2400, 800, 800)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3jkr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahir5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlj8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rysgy")
+}],
+"loop": true,
+"name": &"Flying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vifbj")
+}],
+"loop": true,
+"name": &"Resting",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ofql"]
+radius = 5.0
+height = 16.0
+
+[node name="boid" type="Node2D" groups=["boidGroup"]]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.02, 0.02)
+sprite_frames = SubResource("SpriteFrames_r3jkr")
+animation = &"Flying"
+frame = 1
+frame_progress = 0.0939041
+
+[node name="Repulsion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Repulsion"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3ofql")
