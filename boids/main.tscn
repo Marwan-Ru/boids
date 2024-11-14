@@ -24,19 +24,6 @@ offset_left = 1.0
 offset_right = 401.0
 offset_bottom = 1083.0
 
-[node name="Basic Box" type="HBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/Basic Box"]
-modulate = Color(0.699653, 0.699653, 0.699653, 1)
-layout_mode = 2
-text = "VariableName
-"
-
-[node name="HSlider" type="HSlider" parent="HBoxContainer/Basic Box"]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="maxVelocity" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
@@ -46,10 +33,11 @@ layout_mode = 2
 text = "maxVelocity
 "
 
-[node name="Velocity" type="HSlider" parent="HBoxContainer/maxVelocity"]
+[node name="Velocity" type="HSlider" parent="HBoxContainer/maxVelocity" groups=["velocitySlider"]]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1000.0
+value = 250.0
 
 [node name="numBoids" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2

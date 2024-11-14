@@ -12,5 +12,3 @@ func _init() -> void:
 		boid.global_position.y = randf_range(0, 1080)
 		
 		self.add_child(boid)
-	
-	

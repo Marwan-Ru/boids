@@ -111,6 +111,12 @@ func _init() -> void:
 	velocity.x = randi_range(1, 10) / 10.0
 	velocity.y = randi_range(1, 10) / 10.0
 
+func _ready() -> void:
+	var velocitySlider = get_tree().get_nodes_in_group("velocitySlider")
+	velocitySlider.front().connect("value_changed", func(value): maxVelocity = value)
+	
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# direction = direction.rotated(0.1)
