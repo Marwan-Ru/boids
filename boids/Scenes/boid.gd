@@ -91,14 +91,16 @@ func move():
 	#Ensure we don't go out of the window
 	var borderRight = 1920
 	var borderBottom = 1080
-	if self.global_position.x < 0 and self.velocity.x > 0:
-		self.velocity.x = -self.velocity.x * randi()
-	if self.global_position.x > borderRight and self.velocity.x < 0:
-		self.velocity.x = -self.velocity.x * randi()
-	if self.global_position.y < 0 and self.velocity.y > 0:
-		self.velocity.y = -self.velocity.y * randi()
-	if self.global_position.y > borderBottom and self.velocity.y < 0:
-		self.velocity.y = -self.velocity.y * randi()	
+	
+	if self.global_position.x >= borderRight:
+		self.global_position.x = 400
+	elif self.global_position.x < 400:
+		self.global_position.x = borderRight - 5
+	
+	if self.global_position.y >= borderBottom:
+		self.global_position.y = 0
+	elif self.global_position.y < 0:
+		self.global_position.y = borderBottom - 5
 
 	move_and_slide()
 	

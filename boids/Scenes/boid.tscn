@@ -58,9 +58,15 @@ animation = &"Flying"
 frame = 1
 frame_progress = 0.0939041
 
-[node name="Repulsion" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Repulsion"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3ofql")
+
+[node name="Repulsion" type="Area2D" parent="."]
+
+[node name="RepulsionShape" type="CollisionShape2D" parent="Repulsion"]
+position = Vector2(0, 1)
+rotation = 1.5708
+scale = Vector2(1.51552, 1.39725)
 shape = SubResource("CapsuleShape2D_3ofql")
