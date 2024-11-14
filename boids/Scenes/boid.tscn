@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://drnwqr0oouxak"]
+[gd_scene load_steps=9 format=3 uid="uid://drnwqr0oouxak"]
 
 [ext_resource type="Texture2D" uid="uid://bvaxv4vohnq48" path="res://Sprites/canard.png" id="1_l26je"]
+[ext_resource type="Script" path="res://Scenes/boid.gd" id="1_xtrap"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahir5"]
 atlas = ExtResource("1_l26je")
@@ -47,7 +48,8 @@ animations = [{
 radius = 5.0
 height = 16.0
 
-[node name="boid" type="Node2D" groups=["boidGroup"]]
+[node name="boid" type="CharacterBody2D" groups=["boidGroup"]]
+script = ExtResource("1_xtrap")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.02, 0.02)

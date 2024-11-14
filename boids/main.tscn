@@ -6,3 +6,7 @@
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("1_d5g4k")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 2495.0
+offset_bottom = 1442.0
