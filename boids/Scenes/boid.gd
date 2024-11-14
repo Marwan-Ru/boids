@@ -117,6 +117,18 @@ func _process(delta: float) -> void:
 	#self.rotate(0.1)
 	#self.translate(direction * delta * speed)
 	
+	var closeBoids = []
+	for otherBoid in get_tree().get_nodes_in_group("boidGroup"):
+		if otherBoid == self: continue
+		var distance = self.distance(otherBoid)
+		if distance < 200:
+			closeBoids.append(otherBoid)
+
+	
+	self.moveCloser(closeBoids)
+	self.moveWith(closeBoids)  
+	self.moveAway(closeBoids, 20) 
+	
 	velocity *= 10000
 	
 	self.move()

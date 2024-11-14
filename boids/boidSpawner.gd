@@ -1,7 +1,8 @@
 extends Node
 
 @export
-var boidNumber: int = 50
+var boidNumber: int = 100
+
 var boid_scene: PackedScene = preload("res://Scenes/boid.tscn")
 
 func _init() -> void:

@@ -4,7 +4,7 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Node" type="Node" parent="."]
+[node name="Spawner" type="Node" parent="."]
 script = ExtResource("1_d5g4k")
 
 [node name="PlaygroundRect" type="ColorRect" parent="."]
