@@ -22,3 +22,6 @@ window/size/viewport_height=1080
 [global_group]
 
 velocitySlider=""
+attractionSlider=""
+repulsionSlider=""
+followSlider=""

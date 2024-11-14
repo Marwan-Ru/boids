@@ -38,6 +38,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1000.0
 value = 250.0
+tick_count = 5
 
 [node name="numBoids" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -47,55 +48,61 @@ modulate = Color(0.699653, 0.699653, 0.699653, 1)
 layout_mode = 2
 text = "Number of boids"
 
-[node name="numBoids" type="HSlider" parent="HBoxContainer/numBoids"]
+[node name="numBoids" type="LineEdit" parent="HBoxContainer/numBoids"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AttractionAttenuation" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/AttractionAttenuation"]
+modulate = Color(0.698039, 0.698039, 0.698039, 1)
+layout_mode = 2
+text = "Attraction Attenuation
+"
+
+[node name="AttractionAttenuation" type="HSlider" parent="HBoxContainer/AttractionAttenuation" groups=["attractionSlider"]]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 10.0
-max_value = 10000.0
-value = 10.0
+max_value = 300.0
+value = 100.0
+tick_count = 5
 
-[node name="MoveCloser" type="HBoxContainer" parent="HBoxContainer"]
+[node name="FollowAttenuation" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/MoveCloser"]
-modulate = Color(0.698039, 0.698039, 0.698039, 1)
-layout_mode = 2
-text = "Move closer power
-"
-
-[node name="MoveCloser" type="HSlider" parent="HBoxContainer/MoveCloser"]
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 1000.0
-
-[node name="MoveWith" type="HBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MoveWith"]
+[node name="Label" type="Label" parent="HBoxContainer/FollowAttenuation"]
 modulate = Color(0.699653, 0.699653, 0.699653, 1)
 layout_mode = 2
-text = "Move with power
+text = "Follow attenuation
 "
 
-[node name="MoveWith" type="HSlider" parent="HBoxContainer/MoveWith"]
+[node name="FollowAttenuation" type="HSlider" parent="HBoxContainer/FollowAttenuation" groups=["followSlider"]]
 layout_mode = 2
 size_flags_horizontal = 3
-max_value = 1000.0
+min_value = 1.0
+max_value = 200.0
+value = 40.0
+tick_count = 5
 
-[node name="MoveAway" type="HBoxContainer" parent="HBoxContainer"]
+[node name="RepulsionAttenuation" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/MoveAway"]
+[node name="Label" type="Label" parent="HBoxContainer/RepulsionAttenuation"]
 modulate = Color(0.699653, 0.699653, 0.699653, 1)
 layout_mode = 2
-text = "Move away power
+text = "Repulsion Attenuation
+
 "
 
-[node name="MoveAway" type="HSlider" parent="HBoxContainer/MoveAway"]
+[node name="RepulsionAttenuation" type="HSlider" parent="HBoxContainer/RepulsionAttenuation" groups=["repulsionSlider"]]
 layout_mode = 2
 size_flags_horizontal = 3
-max_value = 1000.0
+min_value = 1.0
+value = 5.0
 rounded = true
+tick_count = 5
 
 [node name="PointerFear" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -109,3 +116,4 @@ text = "Fear Level of the pointer
 [node name="PointerFear" type="HSlider" parent="HBoxContainer/PointerFear"]
 layout_mode = 2
 size_flags_horizontal = 3
+tick_count = 5

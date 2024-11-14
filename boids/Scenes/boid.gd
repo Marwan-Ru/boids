@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-var direction : Vector2
-@export
 var maxVelocity = 250
+
+var attractionAttenuation = 100
+var repulsionAttenuation = 5
+var followAttenuation = 40
 
 "Return the distance from another boid"
 func distance(boid):
@@ -29,8 +31,8 @@ func moveCloser(boids):
 
 	# set our velocity towards the others
    
-	velocity.x -= (avgX / 100) 
-	velocity.y -= (avgY / 100) 
+	velocity.x -= (avgX / attractionAttenuation) 
+	velocity.y -= (avgY / attractionAttenuation) 
 	
 "Move with a set of boids"
 func moveWith(boids):
@@ -47,8 +49,8 @@ func moveWith(boids):
 	avgY /= len(boids)
 
 	# set our velocity towards the others
-	velocity.x += (avgX / 40)
-	velocity.y += (avgY / 40)
+	velocity.x += (avgX / followAttenuation)
+	velocity.y += (avgY / followAttenuation)
 
 "Move away from a set of boids. This avoids crowding"
 func moveAway(boids, minDistance):
@@ -77,8 +79,8 @@ func moveAway(boids, minDistance):
 	if numClose == 0:
 		return
 		
-	self.velocity.x -= distanceX / 5
-	self.velocity.y -= distanceY / 5
+	self.velocity.x -= distanceX / repulsionAttenuation
+	self.velocity.y -= distanceY / repulsionAttenuation
 	
 "Perform actual movement based on our velocity"
 
@@ -115,13 +117,19 @@ func _ready() -> void:
 	var velocitySlider = get_tree().get_nodes_in_group("velocitySlider")
 	velocitySlider.front().connect("value_changed", func(value): maxVelocity = value)
 	
+	var attractionSlider = get_tree().get_nodes_in_group("attractionSlider")
+	attractionSlider.front().connect("value_changed", func(value): attractionAttenuation = value)
+	
+	var repulsionSlider = get_tree().get_nodes_in_group("repulsionSlider")
+	repulsionSlider.front().connect("value_changed", func(value): repulsionAttenuation = value)
+	
+	var followSlider = get_tree().get_nodes_in_group("followSlider")
+	followSlider.front().connect("value_changed", func(value): followAttenuation = value)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# direction = direction.rotated(0.1)
-	#self.rotate(0.1)
-	#self.translate(direction * delta * speed)
 	
 	var closeBoids = []
 	for otherBoid in get_tree().get_nodes_in_group("boidGroup"):
