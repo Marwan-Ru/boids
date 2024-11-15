@@ -6,6 +6,8 @@ var attractionAttenuation = 100
 var repulsionAttenuation = 5
 var followAttenuation = 40
 
+var obstaclesInSight : Array
+
 "Return the distance from another boid"
 func distance(boid):
 	var distX = self.global_position.x - boid.global_position.x
@@ -82,6 +84,7 @@ func moveAway(boids, minDistance):
 	self.velocity.x -= distanceX / repulsionAttenuation
 	self.velocity.y -= distanceY / repulsionAttenuation
 	
+
 "Perform actual movement based on our velocity"
 
 func move():
@@ -147,3 +150,19 @@ func _process(delta: float) -> void:
 	
 	self.move()
 	pass
+
+
+# ---- Signals ---
+
+
+# Obstacle detection
+func _on_detection_area_entered(area: Area2D) -> void:
+	if area.get_parent().is_in_group("obstacles"):
+		obstaclesInSight.append(area.get_parent())
+	pass # Replace with function body.
+
+
+func _on_detection_area_exited(area: Area2D) -> void:
+	if area.get_parent().is_in_group("obstacles"):
+		obstaclesInSight.erase(area.get_parent())
+	pass # Replace with function body.

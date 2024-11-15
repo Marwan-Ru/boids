@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drnwqr0oouxak"]
+[gd_scene load_steps=10 format=3 uid="uid://drnwqr0oouxak"]
 
 [ext_resource type="Texture2D" uid="uid://bvaxv4vohnq48" path="res://Sprites/canard.png" id="1_l26je"]
 [ext_resource type="Script" path="res://Scripts/boid.gd" id="1_xtrap"]
@@ -48,6 +48,9 @@ animations = [{
 radius = 5.0
 height = 16.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2s1hx"]
+radius = 18.4894
+
 [node name="boid" type="CharacterBody2D" groups=["boidGroup"]]
 script = ExtResource("1_xtrap")
 
@@ -63,10 +66,13 @@ position = Vector2(0, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3ofql")
 
-[node name="Repulsion" type="Area2D" parent="."]
+[node name="Detection" type="Area2D" parent="."]
 
-[node name="RepulsionShape" type="CollisionShape2D" parent="Repulsion"]
+[node name="CollisionShape" type="CollisionShape2D" parent="Detection"]
 position = Vector2(0, 1)
 rotation = 1.5708
 scale = Vector2(1.51552, 1.39725)
-shape = SubResource("CapsuleShape2D_3ofql")
+shape = SubResource("CircleShape2D_2s1hx")
+
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
