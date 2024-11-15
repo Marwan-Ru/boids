@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ceaa5q4gn6p5c"]
 
-[ext_resource type="Script" path="res://boidSpawner.gd" id="1_d5g4k"]
+[ext_resource type="Script" path="res://Scripts/boidSpawner.gd" id="1_d5g4k"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -21,8 +21,8 @@ color = Color(0.0253004, 6.56985e-06, 0.162626, 1)
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 1.0
-offset_right = 401.0
-offset_bottom = 1083.0
+offset_right = 399.0
+offset_bottom = 1081.0
 
 [node name="maxVelocity" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2

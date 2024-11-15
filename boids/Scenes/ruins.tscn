@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4lcmr6qjpufw"]
+
+[ext_resource type="Texture2D" uid="uid://dsainkpbyr0s3" path="res://Sprites/Ruins1.png" id="1_xnl5u"]
+
+[node name="Ruins" type="CharacterBody2D"]
+
+[node name="Ruins1" type="Sprite2D" parent="."]
+texture = ExtResource("1_xnl5u")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=["obstacles"]]
+polygon = PackedVector2Array(84, 58, 39, 108, -35, 108, -108, 71, -109, -51, -83, -108, 3, -119, 131, -3)
