@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ceaa5q4gn6p5c"]
+[gd_scene load_steps=5 format=3 uid="uid://ceaa5q4gn6p5c"]
 
 [ext_resource type="Script" path="res://Scripts/boidSpawner.gd" id="1_d5g4k"]
 [ext_resource type="PackedScene" uid="uid://2qeublhuviej" path="res://Scenes/tree_big.tscn" id="2_x66x1"]
+[ext_resource type="PackedScene" uid="uid://b4lcmr6qjpufw" path="res://Scenes/ruins.tscn" id="3_5o38c"]
+[ext_resource type="PackedScene" uid="uid://vb8avudm80dc" path="res://Scenes/rock_big.tscn" id="4_hmpl3"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -40,18 +42,6 @@ size_flags_horizontal = 3
 max_value = 1000.0
 value = 250.0
 tick_count = 5
-
-[node name="numBoids" type="HBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/numBoids"]
-modulate = Color(0.699653, 0.699653, 0.699653, 1)
-layout_mode = 2
-text = "Number of boids"
-
-[node name="numBoids" type="LineEdit" parent="HBoxContainer/numBoids"]
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="AttractionAttenuation" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -105,19 +95,35 @@ value = 5.0
 rounded = true
 tick_count = 5
 
-[node name="PointerFear" type="HBoxContainer" parent="HBoxContainer"]
+[node name="ObstacleRepulsionAttenuation" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/PointerFear"]
+[node name="Label" type="Label" parent="HBoxContainer/ObstacleRepulsionAttenuation"]
 modulate = Color(0.699653, 0.699653, 0.699653, 1)
 layout_mode = 2
-text = "Fear Level of the pointer
+text = "Obstacle Repulsion Attenuation
+
 "
 
-[node name="PointerFear" type="HSlider" parent="HBoxContainer/PointerFear"]
+[node name="ObstacleRepulsionAttenuation" type="HSlider" parent="HBoxContainer/ObstacleRepulsionAttenuation" groups=["obstacleRepulsionSlider"]]
 layout_mode = 2
 size_flags_horizontal = 3
+min_value = 1.0
+value = 5.0
+rounded = true
 tick_count = 5
 
 [node name="TreeBig" parent="." instance=ExtResource("2_x66x1")]
+top_level = true
 position = Vector2(1105, 578)
+
+[node name="Ruins" parent="." instance=ExtResource("3_5o38c")]
+position = Vector2(1647, 221)
+scale = Vector2(0.56, 0.56)
+
+[node name="TreeBig2" parent="." instance=ExtResource("2_x66x1")]
+position = Vector2(591, 241)
+scale = Vector2(0.44, 0.44)
+
+[node name="RockBig" parent="." instance=ExtResource("4_hmpl3")]
+position = Vector2(709, 869)

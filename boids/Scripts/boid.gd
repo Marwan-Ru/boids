@@ -5,6 +5,7 @@ var maxVelocity = 250
 var attractionAttenuation = 100
 var repulsionAttenuation = 5
 var followAttenuation = 40
+var obstacleRepulsionAttenuation = 5
 
 var obstaclesInSight : Array
 
@@ -85,6 +86,29 @@ func moveAway(boids, minDistance):
 	self.velocity.y -= distanceY / repulsionAttenuation
 	
 
+func moveAwayFromObstacle(minDistance):
+	if len(obstaclesInSight) < 1: return
+	
+	var distanceX = 0
+	var distanceY = 0
+	
+	for obstacle in obstaclesInSight:
+		var xdiff = (self.global_position.x - obstacle.global_position.x) 
+		var ydiff = (self.global_position.y - obstacle.global_position.y) 
+		
+		if xdiff >= 0: xdiff = sqrt(minDistance) - xdiff
+		elif xdiff < 0: xdiff = -sqrt(minDistance) - xdiff
+		
+		if ydiff >= 0: ydiff = sqrt(minDistance) - ydiff
+		elif ydiff < 0: ydiff = -sqrt(minDistance) - ydiff
+		
+		
+		distanceX += xdiff 
+		distanceY += ydiff 
+	
+	self.velocity.x -= distanceX / repulsionAttenuation
+	self.velocity.y -= distanceY / repulsionAttenuation
+
 "Perform actual movement based on our velocity"
 
 func move():
@@ -129,22 +153,28 @@ func _ready() -> void:
 	var followSlider = get_tree().get_nodes_in_group("followSlider")
 	followSlider.front().connect("value_changed", func(value): followAttenuation = value)
 	
+	var obsRepulsionSlider = get_tree().get_nodes_in_group("obstacleRepulsionSlider")
+	obsRepulsionSlider.front().connect("value_changed", func(value): obstacleRepulsionAttenuation = value)
+	
+	
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
 	var closeBoids = []
+
 	for otherBoid in get_tree().get_nodes_in_group("boidGroup"):
 		if otherBoid == self: continue
 		var distance = self.distance(otherBoid)
 		if distance < 200:
 			closeBoids.append(otherBoid)
-
 	
 	self.moveCloser(closeBoids)
 	self.moveWith(closeBoids)  
 	self.moveAway(closeBoids, 20) 
+	self.moveAwayFromObstacle(10)
 	
 	velocity *= 10000
 	
